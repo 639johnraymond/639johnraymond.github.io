@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>John Raymond E. Gabule | Aspiring Full Stack Developer & BSIT Senior Portfolio</title>
+  <meta name="description" content="Professional portfolio of Alex Morgan - Full Stack Web Developer and BSIT student specializing in modern glassmorphic web design, system administration, and cloud deployment.">
+  <meta name="keywords" content="Portfolio, Full Stack Developer, BSIT, Web Development, SysAd, Tailwind CSS, Glassmorphism, JavaScript, PHP, MySQL">
+  <meta name="author" content="Alex Morgan">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Tailwind CSS v3 via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cyber: {
+              dark: '#07090e',
+              panel: '#0d121f',
+              cyan: '#06b6d4',
+              violet: '#8b5cf6',
+              emerald: '#10b981',
+              border: 'rgba(255, 255, 255, 0.08)'
+            }
+          },
+          fontFamily: {
+            heading: ['Plus Jakarta Sans', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#07090e] text-gray-100 min-h-screen relative antialiased selection:bg-cyan-500/30 selection:text-cyan-300">
+
+  <!-- ==========================================================================
+       AMBIENT GLOWING BACKGROUND ORBS
+       ========================================================================== -->
+  <div class="ambient-glow-wrap" aria-hidden="true">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+    <div class="glow-orb glow-orb-3"></div>
+  </div>
+
+  <!-- Background subtle grid pattern -->
+  <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0" aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       STICKY GLASS NAVIGATION BAR
+       ========================================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 pb-3">
+      <nav id="main-navbar" class="glass-nav rounded-2xl px-4 sm:px-6 py-3.5 flex items-center justify-between shadow-lg shadow-black/20 border border-white/10">
+        
+        <!-- Brand Logo -->
+        <a href="#home" class="flex items-center space-x-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 via-blue-500 to-violet-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-cyan-500/20 group-hover:scale-105 group-hover:rotate-3 transition-transform duration-300">
+            <span class="font-mono">JG</span>
+          </div>
+          <div>
+            <div class="font-heading font-extrabold text-white text-base tracking-tight flex items-center gap-1.5">
+              <span>John</span>
+              <span class="text-cyan-400">Gabule</span>
+              <span class="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            </div>
+            <div class="text-[10px] text-gray-400 font-mono tracking-wider uppercase">BSIT • Dev</div>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden xl:flex items-center space-x-1 text-sm font-medium text-gray-300">
+          <a href="#home" class="nav-link px-3 py-1.5 rounded-xl hover:text-cyan-400 hover:bg-white/5 transition-all">Home</a>
+          <a href="#about" class="nav-link px-3 py-1.5 rounded-xl hover:text-cyan-400 hover:bg-white/5 transition-all">About</a>
+          <a href="#skills" class="nav-link px-3 py-1.5 rounded-xl hover:text-cyan-400 hover:bg-white/5 transition-all">Skills</a>
+          <a href="#projects" class="nav-link px-3 py-1.5 rounded-xl hover:text-cyan-400 hover:bg-white/5 transition-all">Projects</a>
+          <a href="#certificates" class="nav-link px-3 py-1.5 rounded-xl hover:text-cyan-400 hover:bg-white/5 transition-all">Certificates</a>
+          <a href="#activities" class="nav-link px-3 py-1.5 rounded-xl hover:text-cyan-400 hover:bg-white/5 transition-all flex items-center gap-1.5">
+            <span>Activities</span>
+          </a>
+          <a href="#reflections" class="nav-link px-3 py-1.5 rounded-xl hover:text-cyan-400 hover:bg-white/5 transition-all flex items-center gap-1.5">
+            <span>Reflections</span>
+          </a>
+          <a href="#contact" class="nav-link px-3 py-1.5 rounded-xl hover:text-cyan-400 hover:bg-white/5 transition-all">Contact</a>
+        </div>
+
+        <!-- Right Action Controls -->
+        <div class="flex items-center space-x-2.5">
+          
+          <!-- Dark / Light Mode Switcher -->
+          <button type="button" aria-label="Toggle Dark/Light Mode" class="theme-toggle-btn w-10 h-10 rounded-xl glass-btn flex items-center justify-center text-gray-300 hover:text-cyan-400 focus:outline-none">
+            <i class="fa-solid fa-moon theme-icon-moon text-base"></i>
+            <i class="fa-solid fa-sun theme-icon-sun text-base hidden text-amber-400"></i>
+          </button>
+
+          <!-- Contact / Hire CTA Button -->
+          <a href="#contact" class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 rounded-xl btn-neon-primary text-xs font-semibold tracking-wide">
+            <i class="fa-solid fa-paper-plane text-xs"></i>
+            <span>Let's Talk</span>
+          </a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button id="mobile-menu-btn" type="button" aria-label="Open mobile menu" class="xl:hidden w-10 h-10 rounded-xl glass-btn flex items-center justify-center text-gray-300 hover:text-cyan-400 focus:outline-none">
+            <i class="fa-solid fa-bars-staggered text-lg"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MOBILE MENU DRAWER (SLIDE-IN)
+       ========================================================================== -->
+  <div id="mobile-menu-drawer" class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-300 ease-in-out xl:hidden flex justify-end bg-black/60 backdrop-blur-md" aria-hidden="true">
+    <div class="w-full max-w-xs h-full bg-[#0d121f]/95 border-l border-white/10 p-6 flex flex-col justify-between shadow-2xl overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-white/10">
+          <div class="flex items-center space-x-2.5">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-violet-600 flex items-center justify-center text-white font-bold text-sm">
+              AM
+            </div>
+            <span class="font-heading font-bold text-white text-base">Alex Morgan</span>
+          </div>
+          <button id="close-mobile-menu-btn" type="button" aria-label="Close menu" class="w-8 h-8 rounded-lg glass-btn flex items-center justify-center text-gray-400 hover:text-white">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <nav class="mt-6 flex flex-col space-y-2">
+          <a href="#home" class="mobile-nav-link px-4 py-2.5 rounded-xl text-gray-300 hover:text-cyan-400 hover:bg-white/5 text-sm font-medium flex items-center space-x-3">
+            <i class="fa-solid fa-house w-5 text-cyan-400"></i>
+            <span>Home</span>
+          </a>
+          <a href="#about" class="mobile-nav-link px-4 py-2.5 rounded-xl text-gray-300 hover:text-cyan-400 hover:bg-white/5 text-sm font-medium flex items-center space-x-3">
+            <i class="fa-solid fa-user-graduate w-5 text-blue-400"></i>
+            <span>About Me</span>
+          </a>
+          <a href="#skills" class="mobile-nav-link px-4 py-2.5 rounded-xl text-gray-300 hover:text-cyan-400 hover:bg-white/5 text-sm font-medium flex items-center space-x-3">
+            <i class="fa-solid fa-laptop-code w-5 text-purple-400"></i>
+            <span>Skills</span>
+          </a>
+          <a href="#projects" class="mobile-nav-link px-4 py-2.5 rounded-xl text-gray-300 hover:text-cyan-400 hover:bg-white/5 text-sm font-medium flex items-center space-x-3">
+            <i class="fa-solid fa-layer-group w-5 text-pink-400"></i>
+            <span>Projects</span>
+          </a>
+          <a href="#certificates" class="mobile-nav-link px-4 py-2.5 rounded-xl text-gray-300 hover:text-cyan-400 hover:bg-white/5 text-sm font-medium flex items-center space-x-3">
+            <i class="fa-solid fa-award w-5 text-amber-400"></i>
+            <span>Certificates</span>
+          </a>
+          <a href="#activities" class="mobile-nav-link px-4 py-2.5 rounded-xl text-gray-300 hover:text-cyan-400 hover:bg-white/5 text-sm font-medium flex items-center space-x-3">
+            <i class="fa-solid fa-file-word w-5 text-blue-400"></i>
+            <span>Word Activities</span>
+          </a>
+          <a href="#reflections" class="mobile-nav-link px-4 py-2.5 rounded-xl text-gray-300 hover:text-cyan-400 hover:bg-white/5 text-sm font-medium flex items-center space-x-3">
+            <i class="fa-solid fa-book-open-reader w-5 text-violet-400"></i>
+            <span>Reflection Papers</span>
+          </a>
+          <a href="#contact" class="mobile-nav-link px-4 py-2.5 rounded-xl text-gray-300 hover:text-cyan-400 hover:bg-white/5 text-sm font-medium flex items-center space-x-3">
+            <i class="fa-solid fa-envelope w-5 text-emerald-400"></i>
+            <span>Contact</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="pt-6 border-t border-white/10 space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="text-xs text-gray-400">Appearance</span>
+          <button type="button" class="theme-toggle-btn px-3 py-1.5 rounded-lg glass-btn text-xs text-gray-300 flex items-center space-x-2">
+            <i class="fa-solid fa-circle-half-stroke text-cyan-400"></i>
+            <span>Toggle Theme</span>
+          </button>
+        </div>
+        <a href="#contact" class="w-full py-2.5 rounded-xl btn-neon-primary text-xs font-semibold text-center block">
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================== -->
+  <main class="relative z-10 pt-28 sm:pt-32">
+
+    <!-- ==========================================================================
+         SECTION 1: HOME / HERO
+         ========================================================================== -->
+    <section id="home" class="min-h-[calc(100vh-8rem)] flex items-center px-4 sm:px-6 lg:px-8 py-12">
+      <div class="max-w-7xl mx-auto w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          <!-- Left Column: Copywriting & CTAs -->
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            
+            <!-- Status Badge Pill -->
+            <div class="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full glass-panel border border-emerald-500/30 text-emerald-300 text-xs font-medium shadow-sm">
+              <span class="pulse-indicator w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span class="bind-personal-badge tracking-wide">Available for Internships & Projects</span>
+            </div>
+
+            <!-- Main Headline -->
+            <div class="space-y-2">
+              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading tracking-tight text-white leading-tight">
+                Crafting Scalable Systems & <br>
+                <span class="gradient-text-cyber">Sleek Web Experiences</span>
+              </h1>
+              
+              <!-- Dynamic Typewriter Subhead -->
+              <div class="flex items-center justify-center lg:justify-start space-x-2 text-lg sm:text-2xl text-gray-300 font-medium">
+                <span class="text-gray-400 font-normal">I specialize as a</span>
+                <span id="hero-typewriter" class="text-cyan-400 font-mono font-semibold border-r-2 border-cyan-400 pr-1 animate-pulse"></span>
+              </div>
+            </div>
+
+            <!-- Professional Summary -->
+            <p class="bind-personal-summary text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+              Passionate Information Technology senior specializing in modern web applications, scalable system architectures, and sleek glassmorphic UI/UX. Experienced in turning complex requirements into intuitive digital experiences.
+            </p>
+
+            <!-- Action CTAs & Social Links -->
+            <div class="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-3.5">
+              <a href="#projects" class="px-6 py-3.5 rounded-xl btn-neon-primary font-semibold text-sm flex items-center space-x-2">
+                <span>View Projects</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+
+              <button onclick="triggerDownloadResume()" type="button" class="px-5 py-3.5 rounded-xl glass-btn text-white hover:text-cyan-400 font-semibold text-sm flex items-center space-x-2 transition">
+                <i class="fa-solid fa-file-arrow-down text-cyan-400"></i>
+                <span>Download CV</span>
+              </button>
+
+              <a href="#contact" class="px-5 py-3.5 rounded-xl glass-btn text-gray-300 hover:text-white font-semibold text-sm flex items-center space-x-2 transition">
+                <i class="fa-solid fa-envelope text-purple-400"></i>
+                <span>Contact Me</span>
+              </a>
+            </div>
+
+            <!-- Social Links Quick Strip -->
+            <div class="pt-4 flex items-center justify-center lg:justify-start space-x-3 text-gray-400">
+              <span class="text-xs uppercase tracking-wider font-mono text-gray-500">Connect:</span>
+              <a href="https://www.facebook.com/639johnraymond" target="_blank" rel="noopener noreferrer" aria-label="Facebook Profile" class="bind-social-facebook w-9 h-9 rounded-xl glass-btn flex items-center justify-center hover:text-blue-400 hover:border-blue-400/40 transition" title="Facebook">
+                <i class="fa-brands fa-facebook-f text-base"></i>
+              </a>
+              <a href="https://x.com/GabuleRaym60339" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile" class="bind-social-twitter w-9 h-9 rounded-xl glass-btn flex items-center justify-center hover:text-cyan-400 hover:border-cyan-400/40 transition" title="Twitter">
+                <i class="fa-brands fa-x-twitter text-base"></i>
+              </a>
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile" class="bind-social-instagram w-9 h-9 rounded-xl glass-btn flex items-center justify-center hover:text-pink-400 hover:border-pink-400/40 transition" title="Instagram">
+                <i class="fa-brands fa-instagram text-base"></i>
+              </a>
+            </div>
+
+            <!-- Hero Stats Cards Grid -->
+            <div id="hero-stats-container" class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <!-- Dynamically populated from data.js -->
+            </div>
+
+          </div>
+
+          <!-- Right Column: Interactive Glass Portrait Card -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative w-full max-w-md">
+              
+              <!-- Ambient Glow ring behind card -->
+              <div class="absolute -inset-1.5 rounded-3xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 opacity-30 blur-xl"></div>
+              
+              <!-- Main Glass Card Container -->
+              <div class="relative glass-panel rounded-3xl p-6 sm:p-7 shadow-2xl border border-white/15">
+                
+                <!-- Avatar Visual Wrapper -->
+                <div class="relative rounded-2xl overflow-hidden aspect-square border border-white/10 group shadow-inner bg-gradient-to-br from-slate-900 to-black">
+                  <img src="assets/images/avatar.jpg" alt="Alex Morgan - Developer Portrait" class="bind-personal-avatar w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out">
+                  
+                  <!-- Gradient overlay for subtle contrast -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+
+                  <!-- In-Image Nameplate -->
+                  <div class="absolute bottom-4 left-4 right-4 text-left">
+                    <div class="text-xs font-mono text-cyan-300 font-medium">BSIT Senior & Developer</div>
+                    <div class="text-xl font-bold font-heading text-white bind-personal-name">Alex Morgan</div>
+                    <div class="flex items-center space-x-1.5 text-xs text-gray-300 mt-0.5">
+                      <i class="fa-solid fa-location-dot text-red-400 text-[10px]"></i>
+                      <span class="bind-personal-location">Metro Manila, Philippines</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Floating Badge 1: Education Track -->
+                <div class="absolute -top-4 -left-4 glass-panel rounded-2xl px-3.5 py-2.5 shadow-xl border border-cyan-400/30 flex items-center space-x-2.5 animate-float-slow">
+                  <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-sm">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-white leading-tight">BSIT 4th Year</div>
+                    <div class="text-[9px] text-cyan-300 font-mono">Senior Class</div>
+                  </div>
+                </div>
+
+                <!-- Floating Badge 2: Tech Specialization -->
+                <div class="absolute -bottom-4 -right-4 glass-panel rounded-2xl px-3.5 py-2.5 shadow-xl border border-violet-400/30 flex items-center space-x-2.5 animate-float-delay">
+                  <div class="w-8 h-8 rounded-lg bg-violet-500/20 text-violet-400 flex items-center justify-center text-sm">
+                    <i class="fa-solid fa-code-merge"></i>
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-white leading-tight">Full Stack Web</div>
+                    <div class="text-[9px] text-violet-300 font-mono">SysAd & DevOps</div>
+                  </div>
+                </div>
+
+                <!-- Quick Tech Stack Chips beneath image -->
+                <div class="mt-5 pt-4 border-t border-white/10 flex flex-wrap items-center justify-center gap-1.5 text-xs">
+                  <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 font-mono text-[11px]">HTML5</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-cyan-400 font-mono text-[11px]">Tailwind</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-yellow-400 font-mono text-[11px]">JavaScript</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-indigo-400 font-mono text-[11px]">PHP</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-amber-400 font-mono text-[11px]">MySQL</span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 2: ABOUT ME (Placeholder Anchor for Step-by-Step implementation)
+         ========================================================================== -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 border-t border-white/5">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="px-3 py-1 rounded-full text-xs font-mono font-medium text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 uppercase tracking-widest">
+            01. Background
+          </span>
+          <p class="text-gray-400 text-sm sm:text-base mt-2">Educational milestones, academic achievements, and core development philosophies.</p>
+        </div>
+        <div id="about-section-container">
+          <!-- Dynamically populated from data.js via initAboutSection -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: SKILLS -->
+    <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 border-t border-white/5">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="px-3 py-1 rounded-full text-xs font-mono font-medium text-purple-400 bg-purple-500/10 border border-purple-500/20 uppercase tracking-widest">
+            02. Technical Arsenal
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white mt-3">Skills & Technologies</h2>
+          <p class="text-gray-400 text-sm sm:text-base mt-2">Languages, frameworks, databases, and system administration tools.</p>
+        </div>
+        <div id="skills-section-container">
+          <!-- Dynamically populated from data.js via initSkillsSection -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: PROJECTS -->
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 border-t border-white/5">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="px-3 py-1 rounded-full text-xs font-mono font-medium text-pink-400 bg-pink-500/10 border border-pink-500/20 uppercase tracking-widest">
+            03. Portfolio Works
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white mt-3">Featured Projects</h2>
+          <p class="text-gray-400 text-sm sm:text-base mt-2">Interactive filterable showcase of academic capstones and web applications.</p>
+        </div>
+        <div id="projects-section-container">
+          <!-- Dynamically populated from data.js via initProjectsSection -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: CERTIFICATES -->
+    <section id="certificates" class="py-20 px-4 sm:px-6 lg:px-8 border-t border-white/5">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="px-3 py-1 rounded-full text-xs font-mono font-medium text-amber-400 bg-amber-500/10 border border-amber-500/20 uppercase tracking-widest">
+            04. Credentials
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white mt-3">Certificates & Achievements</h2>
+          <p class="text-gray-400 text-sm sm:text-base mt-2">Industry and academic credentials in IT, web engineering, and networking.</p>
+        </div>
+        <div id="certificates-section-container">
+          <!-- Dynamically populated from data.js via initCertificatesSection -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: SCHOOL ACTIVITIES (Word files) -->
+    <section id="activities" class="py-20 px-4 sm:px-6 lg:px-8 border-t border-white/5">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="px-3 py-1 rounded-full text-xs font-mono font-medium text-blue-400 bg-blue-500/10 border border-blue-500/20 uppercase tracking-widest">
+            05. Academic Works
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white mt-3">School Activities (.docx)</h2>
+          <p class="text-gray-400 text-sm sm:text-base mt-2">Laboratory exercises, server configuration manuals, and assignments.</p>
+        </div>
+        <div id="activities-section-container">
+          <!-- Dynamically populated from data.js via initActivitiesSection -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: REFLECTION PAPERS (Word files) -->
+    <section id="reflections" class="py-20 px-4 sm:px-6 lg:px-8 border-t border-white/5">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="px-3 py-1 rounded-full text-xs font-mono font-medium text-violet-400 bg-violet-500/10 border border-violet-500/20 uppercase tracking-widest">
+            06. Seminar Insights
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white mt-3">Reflection Papers (.docx)</h2>
+          <p class="text-gray-400 text-sm sm:text-base mt-2">Critical synthesis and takeaways from tech seminars, conferences, and symposia.</p>
+        </div>
+        <div id="reflections-section-container">
+          <!-- Dynamically populated from data.js via initReflectionsSection -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: CONTACT -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 border-t border-white/5">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="px-3 py-1 rounded-full text-xs font-mono font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 uppercase tracking-widest">
+            07. Get In Touch
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white mt-3">Let's Connect</h2>
+          <p class="text-gray-400 text-sm sm:text-base mt-2">Have a question or interested in working together? Drop me a message!</p>
+        </div>
+        <div id="contact-section-container">
+          <!-- Dynamically populated from data.js via initContactSection -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       GLOBAL DOCUMENT PREVIEW MODAL
+       ========================================================================== -->
+  <div id="document-preview-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop" aria-hidden="true">
+    <div class="relative w-full max-w-2xl glass-panel rounded-3xl p-6 sm:p-8 border border-white/20 shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto">
+      <div id="document-modal-body">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       SCROLL TO TOP BUTTON
+       ========================================================================== -->
+  <button id="scroll-to-top-btn" type="button" aria-label="Scroll to top" class="fixed bottom-6 left-6 z-40 w-11 h-11 rounded-2xl glass-panel border border-cyan-400/30 flex items-center justify-center text-cyan-400 hover:text-white hover:bg-cyan-500/20 shadow-lg shadow-black/40 opacity-0 pointer-events-none transition-all duration-300">
+    <i class="fa-solid fa-arrow-up text-sm"></i>
+  </button>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="relative z-10 border-t border-white/10 py-10 px-4 sm:px-6 lg:px-8 mt-20 bg-black/40 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+      <div class="flex items-center space-x-2">
+        <span class="font-bold text-white font-heading">John Raymond E. Gabule</span>
+        <span>•</span>
+        <span>BSIT Portfolio</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span>Designed with Glassmorphism & Tailwind CSS</span>
+        <span>•</span>
+        <a href="#home" class="text-cyan-400 hover:underline">Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Portfolio Data & App Logic -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
