@@ -303,7 +303,7 @@ function showToast(message, type = 'info') {
 
 // Global helper for interactive buttons
 window.triggerDownloadResume = function() {
-  showToast("Downloading Alex Morgan - Resume.pdf (Sample)");
+  showToast("Downloading John Gabule - Resume.pdf (Sample)");
 };
 
 window.triggerCopyEmail = function() {
@@ -351,30 +351,73 @@ function initDocumentModals() {
       </div>
 
       <div class="space-y-4 text-sm text-gray-300">
-        <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg">
+        <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between gap-3">
+          <div class="flex items-center space-x-3 min-w-0">
+            <div class="w-10 h-10 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg shrink-0">
               <i class="fa-solid fa-file-word"></i>
             </div>
-            <div>
-              <div class="font-medium text-white text-xs md:text-sm truncate max-w-xs">${doc.fileName}</div>
+            <div class="min-w-0">
+              <div class="font-medium text-white text-xs md:text-sm truncate">${doc.fileName}</div>
               <div class="text-xs text-gray-400">${doc.format} • ${doc.fileSize}</div>
             </div>
           </div>
-          <button onclick="simulateDownload('${doc.fileName}')" class="px-3.5 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black text-xs font-semibold flex items-center space-x-1.5 transition">
-            <i class="fa-solid fa-download"></i>
-            <span>Download</span>
-          </button>
+          ${doc.fileUrl ? `
+            <a href="${doc.fileUrl}" download="${doc.fileName}" onclick="showToast('Downloading ${doc.fileName}...')" class="px-3.5 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black text-xs font-semibold flex items-center space-x-1.5 transition shrink-0">
+              <i class="fa-solid fa-download"></i>
+              <span>Download</span>
+            </a>
+          ` : `
+            <button onclick="simulateDownload('${doc.fileName}')" class="px-3.5 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black text-xs font-semibold flex items-center space-x-1.5 transition shrink-0">
+              <i class="fa-solid fa-download"></i>
+              <span>Download</span>
+            </button>
+          `}
         </div>
 
-        <div>
-          <h4 class="font-semibold text-white text-sm mb-1.5">Document Overview & Executive Summary</h4>
-          <p class="text-gray-300 leading-relaxed text-xs md:text-sm">${doc.summary}</p>
-        </div>
+        ${doc.letterContent ? `
+          <div>
+            <h4 class="font-semibold text-white text-sm mb-2">Document Content Preview</h4>
+            <div class="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 space-y-4 text-xs sm:text-sm leading-relaxed text-gray-300">
+              <div class="space-y-0.5 text-xs">
+                <div class="font-bold text-white text-sm">${doc.letterContent.sender[0]}</div>
+                ${doc.letterContent.sender.slice(1).map(line => `<div class="text-gray-400">${line}</div>`).join('')}
+              </div>
+
+              <div class="pt-2 space-y-0.5 text-xs">
+                <div class="text-cyan-400 font-medium mb-2">${doc.letterContent.date}</div>
+                <div class="font-semibold text-white">${doc.letterContent.recipient[0]}</div>
+                ${doc.letterContent.recipient.slice(1).map(line => `<div class="text-gray-400">${line}</div>`).join('')}
+              </div>
+
+              <div class="pt-1 font-semibold text-white">${doc.letterContent.salutation}</div>
+
+              <div class="space-y-3 text-gray-300 text-justify">
+                ${doc.letterContent.paragraphs.map(p => `<p>${p}</p>`).join('')}
+              </div>
+
+              <div class="pt-3 space-y-4">
+                <div class="text-gray-300">${doc.letterContent.closing}</div>
+                <div class="font-bold text-white tracking-wide">${doc.letterContent.signature}</div>
+              </div>
+            </div>
+          </div>
+        ` : doc.essayContent ? `
+          <div>
+            <h4 class="font-semibold text-white text-sm mb-2">Full Reflection Paper</h4>
+            <div class="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3.5 text-xs sm:text-sm leading-relaxed text-gray-300 text-justify">
+              ${doc.essayContent.map(p => `<p class="indent-6">${p}</p>`).join('')}
+            </div>
+          </div>
+        ` : `
+          <div>
+            <h4 class="font-semibold text-white text-sm mb-1.5">Document Overview & Executive Summary</h4>
+            <p class="text-gray-300 leading-relaxed text-xs md:text-sm">${doc.summary}</p>
+          </div>
+        `}
 
         ${doc.previewHighlights ? `
           <div>
-            <h4 class="font-semibold text-white text-sm mb-1.5">Key Laboratory Outputs</h4>
+            <h4 class="font-semibold text-white text-sm mb-1.5">Key Highlights</h4>
             <ul class="space-y-1.5">
               ${doc.previewHighlights.map(h => `
                 <li class="flex items-center space-x-2 text-xs md:text-sm text-gray-300">
@@ -405,10 +448,17 @@ function initDocumentModals() {
         <button onclick="closeDocumentModal()" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 text-xs font-medium transition">
           Close Preview
         </button>
-        <button onclick="simulateDownload('${doc.fileName}')" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black text-xs font-semibold flex items-center space-x-2 transition">
-          <i class="fa-solid fa-file-arrow-down"></i>
-          <span>Save File (.docx)</span>
-        </button>
+        ${doc.fileUrl ? `
+          <a href="${doc.fileUrl}" download="${doc.fileName}" onclick="showToast('Downloading ${doc.fileName}...')" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black text-xs font-semibold flex items-center space-x-2 transition">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            <span>Save File (.docx)</span>
+          </a>
+        ` : `
+          <button onclick="simulateDownload('${doc.fileName}')" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black text-xs font-semibold flex items-center space-x-2 transition">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            <span>Save File (.docx)</span>
+          </button>
+        `}
       </div>
     `;
 
@@ -472,12 +522,9 @@ function initAboutSection() {
             </div>
             <div class="p-3.5 rounded-xl bg-white/5 border border-white/5">
               <span class="text-gray-400 block text-[11px] font-mono">TRACK</span>
-              <span class="text-cyan-300 font-semibold">Web Deployment & SysAd</span>
+              <span class="text-cyan-300 font-semibold">Web Development</span>
             </div>
-            <div class="p-3.5 rounded-xl bg-white/5 border border-white/5">
-              <span class="text-gray-400 block text-[11px] font-mono">ACADEMIC STANDING</span>
-              <span class="text-amber-300 font-semibold">Dean's Lister (1.35 GWA)</span>
-            </div>
+            
           </div>
         </div>
 
@@ -523,13 +570,7 @@ function initAboutSection() {
               <!-- Education Glass Card -->
               <div class="glass-panel rounded-2xl p-6 sm:p-7 border border-white/10 hover:border-cyan-400/30 transition-all duration-300">
                 <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <span class="px-2.5 py-1 rounded-md text-[11px] font-mono font-semibold ${idx === 0 ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30' : 'bg-violet-500/20 text-violet-300 border border-violet-500/30'}">
-                    ${edu.period}
-                  </span>
-                  <span class="text-xs font-mono text-amber-300 flex items-center gap-1.5 bg-amber-500/10 px-2 py-0.5 rounded-md border border-amber-500/20">
-                    <i class="fa-solid fa-award text-xs"></i>
-                    <span>${edu.gpa}</span>
-                  </span>
+                  
                 </div>
 
                 <h4 class="text-lg sm:text-xl font-bold font-heading text-white mt-1">${edu.degree}</h4>
@@ -860,16 +901,41 @@ window.openProjectDetailsModal = function(projectId) {
 /* ==========================================================================
    CERTIFICATES & ACHIEVEMENTS DYNAMIC SECTION
    ========================================================================== */
+function parseCertDate(dateStr) {
+  if (!dateStr) return 0;
+  const months = {
+    jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5,
+    jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11
+  };
+  const parts = dateStr.trim().split(/\s+/);
+  if (parts.length === 3) {
+    const day = parseInt(parts[0], 10);
+    const month = months[parts[1].slice(0, 3).toLowerCase()];
+    const year = parseInt(parts[2], 10);
+    if (!Number.isNaN(day) && month !== undefined && !Number.isNaN(year)) {
+      return Date.UTC(year, month, day);
+    }
+  }
+  const parsed = Date.parse(dateStr);
+  return Number.isNaN(parsed) ? 0 : parsed;
+}
+
 function initCertificatesSection() {
   if (typeof PORTFOLIO_DATA === 'undefined' || !PORTFOLIO_DATA.certificates) return;
   const container = document.getElementById('certificates-section-container');
   if (!container) return;
 
-  const { certificates } = PORTFOLIO_DATA;
+  const sortedCertificates = [...PORTFOLIO_DATA.certificates]
+    .map((cert, idx) => ({ cert, idx }))
+    .sort((a, b) => {
+      const diff = parseCertDate(a.cert.issueDate) - parseCertDate(b.cert.issueDate);
+      return diff !== 0 ? diff : a.idx - b.idx;
+    })
+    .map(item => item.cert);
 
   container.innerHTML = `
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      ${certificates.map(cert => `
+      ${sortedCertificates.map(cert => `
         <div class="glass-panel-interactive rounded-3xl overflow-hidden border border-white/10 flex flex-col justify-between transition-all duration-300 group">
           <div>
             <!-- Certificate Image Thumbnail -->
@@ -1014,7 +1080,7 @@ function initActivitiesSection() {
   const { activities } = PORTFOLIO_DATA;
 
   container.innerHTML = `
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 ${activities.length === 1 ? 'max-w-3xl mx-auto' : 'md:grid-cols-2'} gap-6">
       ${activities.map(act => `
         <div class="glass-panel-interactive rounded-3xl p-6 sm:p-7 border border-white/10 flex flex-col justify-between transition-all duration-300 group">
           <div>
@@ -1034,10 +1100,10 @@ function initActivitiesSection() {
             </h3>
 
             <!-- File Details Tag -->
-            <div class="flex items-center space-x-2 text-xs text-gray-400 font-mono mt-1.5 mb-3">
+            <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-gray-400 font-mono mt-1.5 mb-3">
               <span class="text-cyan-400">${act.date}</span>
               <span>•</span>
-              <span>${act.fileName}</span>
+              <span class="truncate max-w-full">${act.fileName}</span>
               <span>•</span>
               <span class="text-gray-300 font-semibold">${act.fileSize}</span>
             </div>
@@ -1069,13 +1135,24 @@ function initActivitiesSection() {
               <span>Quick Preview</span>
             </button>
 
-            <button 
-              onclick="simulateDownload('${act.fileName}')" 
-              type="button" 
-              class="px-3.5 py-1.5 rounded-xl bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 hover:text-white border border-blue-500/30 font-semibold text-xs flex items-center space-x-1.5 transition">
-              <i class="fa-solid fa-download text-xs"></i>
-              <span>Download (.docx)</span>
-            </button>
+            ${act.fileUrl ? `
+              <a 
+                href="${act.fileUrl}" 
+                download="${act.fileName}" 
+                onclick="showToast('Downloading ${act.fileName}...')" 
+                class="px-3.5 py-1.5 rounded-xl bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 hover:text-white border border-blue-500/30 font-semibold text-xs flex items-center space-x-1.5 transition">
+                <i class="fa-solid fa-download text-xs"></i>
+                <span>Download (.docx)</span>
+              </a>
+            ` : `
+              <button 
+                onclick="simulateDownload('${act.fileName}')" 
+                type="button" 
+                class="px-3.5 py-1.5 rounded-xl bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 hover:text-white border border-blue-500/30 font-semibold text-xs flex items-center space-x-1.5 transition">
+                <i class="fa-solid fa-download text-xs"></i>
+                <span>Download (.docx)</span>
+              </button>
+            `}
           </div>
 
         </div>
@@ -1092,11 +1169,23 @@ function initReflectionsSection() {
   const container = document.getElementById('reflections-section-container');
   if (!container) return;
 
-  const { reflectionPapers } = PORTFOLIO_DATA;
+  const sortedReflections = [...PORTFOLIO_DATA.reflectionPapers]
+    .map((ref, idx) => ({ ref, idx }))
+    .sort((a, b) => {
+      const diff = parseCertDate(a.ref.date) - parseCertDate(b.ref.date);
+      return diff !== 0 ? diff : a.idx - b.idx;
+    })
+    .map(item => item.ref);
+
+  const gridCols = sortedReflections.length === 1
+    ? 'max-w-3xl mx-auto'
+    : sortedReflections.length % 2 === 0
+      ? 'md:grid-cols-2'
+      : 'md:grid-cols-3';
 
   container.innerHTML = `
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      ${reflectionPapers.map(ref => `
+    <div class="grid grid-cols-1 ${gridCols} gap-6">
+      ${sortedReflections.map(ref => `
         <div class="glass-panel-interactive rounded-3xl p-6 sm:p-7 border border-white/10 flex flex-col justify-between transition-all duration-300 group">
           <div>
             <!-- Header: Doc Icon & Seminar Badge -->
@@ -1104,7 +1193,7 @@ function initReflectionsSection() {
               <div class="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 border border-purple-500/30 flex items-center justify-center text-2xl shadow-md group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-book-open-reader"></i>
               </div>
-              <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-medium bg-purple-500/10 border border-purple-500/20 text-purple-300 truncate max-w-[170px]">
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-medium bg-purple-500/10 border border-purple-500/20 text-purple-300 truncate max-w-[200px]">
                 ${ref.seminar}
               </span>
             </div>
@@ -1116,7 +1205,7 @@ function initReflectionsSection() {
 
             <!-- Speaker & Date -->
             <div class="text-xs text-purple-400 font-medium flex items-center gap-1.5 mt-1.5">
-              <i class="fa-solid fa-user-tie text-[10px]"></i>
+              <i class="fa-solid fa-user-tie text-[10px] shrink-0"></i>
               <span class="truncate">${ref.speaker}</span>
             </div>
 
@@ -1152,13 +1241,24 @@ function initReflectionsSection() {
               <span>Read Insights</span>
             </button>
 
-            <button 
-              onclick="simulateDownload('${ref.fileName}')" 
-              type="button" 
-              class="px-3 py-1.5 rounded-xl bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 hover:text-white border border-purple-500/30 font-semibold text-xs flex items-center space-x-1.5 transition">
-              <i class="fa-solid fa-download text-xs"></i>
-              <span>.docx</span>
-            </button>
+            ${ref.fileUrl ? `
+              <a 
+                href="${ref.fileUrl}" 
+                download="${ref.fileName}" 
+                onclick="showToast('Downloading ${ref.fileName}...')" 
+                class="px-3 py-1.5 rounded-xl bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 hover:text-white border border-purple-500/30 font-semibold text-xs flex items-center space-x-1.5 transition">
+                <i class="fa-solid fa-download text-xs"></i>
+                <span>.docx</span>
+              </a>
+            ` : `
+              <button 
+                onclick="simulateDownload('${ref.fileName}')" 
+                type="button" 
+                class="px-3 py-1.5 rounded-xl bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 hover:text-white border border-purple-500/30 font-semibold text-xs flex items-center space-x-1.5 transition">
+                <i class="fa-solid fa-download text-xs"></i>
+                <span>.docx</span>
+              </button>
+            `}
           </div>
 
         </div>
@@ -1337,7 +1437,7 @@ function initContactSection() {
                 id="contact-message" 
                 rows="4" 
                 required 
-                placeholder="Hi Alex, I'd like to talk about an internship opportunity..." 
+                placeholder="Hi John, I'd like to talk about an internship opportunity..." 
                 class="w-full p-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-cyan-400/60 focus:ring-1 focus:ring-cyan-400/40 transition resize-none"></textarea>
             </div>
 
